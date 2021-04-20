@@ -6,6 +6,7 @@ module.exports = () => {
 const app = express();
 
     app.use(bodyParser.urlencoded({ extended: true }));
+    app.use(bodyParser.json( { extended: true }));
 
     consign()
         .include('controllers')

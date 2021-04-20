@@ -1,11 +1,23 @@
+const Atendimento = require('../models/atendimento');
+
 module.exports = app => {
 
-    app.get('/atendimentos', (req, res) => res.send("teste"));
+    app.get('/atendimentos', (req, res) => {
+        Atendimento.lista(res);
+    });
+
+    app.get('/atendimentos/:id', (req, res) => {
+        
+        const id = parseInt(req.params.id);
+        
+        Atendimento.buscaPorId(id, res);
+    })
 
     app.post('/atendimentos', (req, res) => { 
-        console.log(req.body);
-        res.send("post")}
-    
-    );
+       
+        const atendimento = req.body;
+        Atendimento.adiciona(atendimento, res);
+        
+    });
 
 }
